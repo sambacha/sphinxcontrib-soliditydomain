@@ -1,0 +1,7 @@
+[tool.dephell.main]
+# read from poetry format
+from = {format = "setuppy", path = "setup.py"}
+# drop dev-dependencies
+envs = ["main"]
+# and convert into setup.py
+to = {format = "poetry", path = "pyproject.toml"}

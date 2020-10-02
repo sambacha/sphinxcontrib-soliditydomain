@@ -1,0 +1,3 @@
+digraph installed {
+	installed [label=installed color=blue]
+}
