@@ -13,8 +13,8 @@ def serializedATN():
         buf.write("\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23")
         buf.write("\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30")
         buf.write("\4\31\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36")
-        buf.write("\t\36\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\4$\t$\4%\t%")
-        buf.write("\4&\t&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4,\t,\4-\t-\4.")
+        buf.write('\t\36\4\37\t\37\4 \t \4!\t!\4"\t"\4#\t#\4$\t$\4%\t%')
+        buf.write("\4&\t&\4'\t'\4(\t(\4)\t)\4*\t*\4+\t+\4,\t,\4-\t-\4.")
         buf.write("\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62\4\63\t\63\4\64")
         buf.write("\t\64\4\65\t\65\4\66\t\66\4\67\t\67\48\t8\49\t9\4:\t:")
         buf.write("\4;\t;\4<\t<\4=\t=\4>\t>\4?\t?\4@\t@\4A\tA\4B\tB\4C\t")
@@ -37,9 +37,9 @@ def serializedATN():
         buf.write("\3\33\3\33\3\34\3\34\3\34\3\34\3\34\3\34\3\34\3\34\3\34")
         buf.write("\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\36\3\36")
         buf.write("\3\36\3\36\3\36\3\36\3\36\3\36\3\37\3\37\3\37\3\37\3\37")
-        buf.write("\3\37\3 \3 \3 \3 \3 \3!\3!\3\"\3\"\3#\3#\3$\3$\3$\3$\3")
-        buf.write("$\3$\3$\3$\3%\3%\3%\3&\3&\3&\3&\3&\3&\3&\3\'\3\'\3\'\3")
-        buf.write("\'\3\'\3\'\3\'\3\'\3(\3(\3(\3(\3(\3(\3(\3(\3(\3)\3)\3")
+        buf.write('\3\37\3 \3 \3 \3 \3 \3!\3!\3"\3"\3#\3#\3$\3$\3$\3$\3')
+        buf.write("$\3$\3$\3$\3%\3%\3%\3&\3&\3&\3&\3&\3&\3&\3'\3'\3'\3")
+        buf.write("'\3'\3'\3'\3'\3(\3(\3(\3(\3(\3(\3(\3(\3(\3)\3)\3")
         buf.write(")\3*\3*\3*\3*\3*\3+\3+\3+\3+\3+\3+\3,\3,\3,\3,\3,\3,\3")
         buf.write(",\3,\3,\3-\3-\3-\3.\3.\3.\3.\3.\3.\3.\3/\3/\3/\3/\3/\3")
         buf.write("/\3\60\3\60\3\60\3\60\3\60\3\61\3\61\3\61\3\61\3\62\3")
@@ -124,8 +124,8 @@ def serializedATN():
         buf.write("\13}\3}\3}\3}\3}\3}\3~\3~\3~\3~\7~\u06af\n~\f~\16~\u06b2")
         buf.write("\13~\3~\3~\3\u06a2\2\177\3\3\5\4\7\5\t\6\13\7\r\b\17\t")
         buf.write("\21\n\23\13\25\f\27\r\31\16\33\17\35\20\37\21!\22#\23")
-        buf.write("%\24\'\25)\26+\27-\30/\31\61\32\63\33\65\34\67\359\36")
-        buf.write(";\37= ?!A\"C#E$G%I&K\'M(O)Q*S+U,W-Y.[/]\60_\61a\62c\63")
+        buf.write("%\24'\25)\26+\27-\30/\31\61\32\63\33\65\34\67\359\36")
+        buf.write(";\37= ?!A\"C#E$G%I&K'M(O)Q*S+U,W-Y.[/]\60_\61a\62c\63")
         buf.write("e\64g\65i\66k\67m8o9q:s;u<w=y>{?}@\177A\u0081B\u0083C")
         buf.write("\u0085D\u0087E\u0089F\u008bG\u008dH\u008fI\u0091J\u0093")
         buf.write("K\u0095L\u0097M\u0099N\u009bO\u009dP\u009fQ\u00a1R\u00a3")
@@ -136,12 +136,12 @@ def serializedATN():
         buf.write("q\u00e5r\u00e7s\u00e9t\u00ebu\u00ed\2\u00ef\2\u00f1v\u00f3")
         buf.write("\2\u00f5\2\u00f7w\u00f9x\u00fby\3\2\13\3\2\62;\4\2GGg")
         buf.write("g\5\2\62;CHch\6\2&&C\\aac|\7\2&&\62;C\\aac|\6\2\f\f\17")
-        buf.write("\17$$^^\6\2\f\f\17\17))^^\5\2\13\f\16\17\"\"\4\2\f\f\17")
+        buf.write('\17$$^^\6\2\f\f\17\17))^^\5\2\13\f\16\17""\4\2\f\f\17')
         buf.write("\17\2\u0745\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3")
         buf.write("\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2")
         buf.write("\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27\3\2\2\2\2\31\3\2\2")
         buf.write("\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2\2\2!\3\2\2\2\2")
-        buf.write("#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2\2")
+        buf.write("#\3\2\2\2\2%\3\2\2\2\2'\3\2\2\2\2)\3\2\2\2\2+\3\2\2\2")
         buf.write("\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65")
         buf.write("\3\2\2\2\2\67\3\2\2\2\29\3\2\2\2\2;\3\2\2\2\2=\3\2\2\2")
         buf.write("\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2\2E\3\2\2\2\2G\3\2\2")
@@ -172,7 +172,7 @@ def serializedATN():
         buf.write("\u0111\3\2\2\2\23\u0114\3\2\2\2\25\u0116\3\2\2\2\27\u0119")
         buf.write("\3\2\2\2\31\u0120\3\2\2\2\33\u0122\3\2\2\2\35\u0127\3")
         buf.write("\2\2\2\37\u0129\3\2\2\2!\u012b\3\2\2\2#\u012d\3\2\2\2")
-        buf.write("%\u0136\3\2\2\2\'\u0140\3\2\2\2)\u0148\3\2\2\2+\u014b")
+        buf.write("%\u0136\3\2\2\2'\u0140\3\2\2\2)\u0148\3\2\2\2+\u014b")
         buf.write("\3\2\2\2-\u014d\3\2\2\2/\u014f\3\2\2\2\61\u0155\3\2\2")
         buf.write("\2\63\u0159\3\2\2\2\65\u0160\3\2\2\2\67\u016c\3\2\2\2")
         buf.write("9\u0175\3\2\2\2;\u017e\3\2\2\2=\u0186\3\2\2\2?\u018c\3")
@@ -223,7 +223,7 @@ def serializedATN():
         buf.write("\7h\2\2\u0123\u0124\7t\2\2\u0124\u0125\7q\2\2\u0125\u0126")
         buf.write("\7o\2\2\u0126\34\3\2\2\2\u0127\u0128\7}\2\2\u0128\36\3")
         buf.write("\2\2\2\u0129\u012a\7.\2\2\u012a \3\2\2\2\u012b\u012c\7")
-        buf.write("\177\2\2\u012c\"\3\2\2\2\u012d\u012e\7e\2\2\u012e\u012f")
+        buf.write('\177\2\2\u012c"\3\2\2\2\u012d\u012e\7e\2\2\u012e\u012f')
         buf.write("\7q\2\2\u012f\u0130\7p\2\2\u0130\u0131\7v\2\2\u0131\u0132")
         buf.write("\7t\2\2\u0132\u0133\7c\2\2\u0133\u0134\7e\2\2\u0134\u0135")
         buf.write("\7v\2\2\u0135$\3\2\2\2\u0136\u0137\7k\2\2\u0137\u0138")
@@ -306,7 +306,7 @@ def serializedATN():
         buf.write("\7v\2\2\u021c\u021d\7g\2\2\u021dx\3\2\2\2\u021e\u021f")
         buf.write("\7#\2\2\u021fz\3\2\2\2\u0220\u0221\7,\2\2\u0221\u0222")
         buf.write("\7,\2\2\u0222|\3\2\2\2\u0223\u0224\7\61\2\2\u0224~\3\2")
-        buf.write("\2\2\u0225\u0226\7\'\2\2\u0226\u0080\3\2\2\2\u0227\u0228")
+        buf.write("\2\2\u0225\u0226\7'\2\2\u0226\u0080\3\2\2\2\u0227\u0228")
         buf.write("\7>\2\2\u0228\u0229\7>\2\2\u0229\u0082\3\2\2\2\u022a\u022b")
         buf.write("\7@\2\2\u022b\u022c\7@\2\2\u022c\u0084\3\2\2\2\u022d\u022e")
         buf.write("\7(\2\2\u022e\u0086\3\2\2\2\u022f\u0230\7~\2\2\u0230\u0088")
@@ -325,7 +325,7 @@ def serializedATN():
         buf.write("\u00a0\3\2\2\2\u0255\u0256\7/\2\2\u0256\u0257\7?\2\2\u0257")
         buf.write("\u00a2\3\2\2\2\u0258\u0259\7,\2\2\u0259\u025a\7?\2\2\u025a")
         buf.write("\u00a4\3\2\2\2\u025b\u025c\7\61\2\2\u025c\u025d\7?\2\2")
-        buf.write("\u025d\u00a6\3\2\2\2\u025e\u025f\7\'\2\2\u025f\u0260\7")
+        buf.write("\u025d\u00a6\3\2\2\2\u025e\u025f\7'\2\2\u025f\u0260\7")
         buf.write("?\2\2\u0260\u00a8\3\2\2\2\u0261\u0262\7n\2\2\u0262\u0263")
         buf.write("\7g\2\2\u0263\u0264\7v\2\2\u0264\u00aa\3\2\2\2\u0265\u0266")
         buf.write("\7<\2\2\u0266\u0267\7?\2\2\u0267\u00ac\3\2\2\2\u0268\u0269")
@@ -783,7 +783,7 @@ class SolidityLexer(Lexer):
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
-    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
+    decisionsToDFA = [DFA(ds, i) for i, ds in enumerate(atn.decisionToState)]
 
     T__0 = 1
     T__1 = 2
@@ -905,69 +905,284 @@ class SolidityLexer(Lexer):
     COMMENT = 118
     LINE_COMMENT = 119
 
-    channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
+    channelNames = [u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN"]
 
-    modeNames = [ "DEFAULT_MODE" ]
+    modeNames = ["DEFAULT_MODE"]
 
-    literalNames = [ "<INVALID>",
-            "'pragma'", "';'", "'^'", "'~'", "'>='", "'>'", "'<'", "'<='", 
-            "'='", "'as'", "'import'", "'*'", "'from'", "'{'", "','", "'}'", 
-            "'contract'", "'interface'", "'library'", "'is'", "'('", "')'", 
-            "'using'", "'for'", "'struct'", "'constructor'", "'modifier'", 
-            "'function'", "'returns'", "'event'", "'enum'", "'['", "']'", 
-            "'.'", "'mapping'", "'=>'", "'memory'", "'storage'", "'calldata'", 
-            "'if'", "'else'", "'while'", "'assembly'", "'do'", "'return'", 
-            "'throw'", "'emit'", "'var'", "'address'", "'bool'", "'string'", 
-            "'byte'", "'++'", "'--'", "'new'", "'+'", "'-'", "'after'", 
-            "'delete'", "'!'", "'**'", "'/'", "'%'", "'<<'", "'>>'", "'&'", 
-            "'|'", "'=='", "'!='", "'&&'", "'||'", "'?'", "':'", "'|='", 
-            "'^='", "'&='", "'<<='", "'>>='", "'+='", "'-='", "'*='", "'/='", 
-            "'%='", "'let'", "':='", "'=:'", "'switch'", "'case'", "'default'", 
-            "'->'", "'anonymous'", "'break'", "'constant'", "'continue'", 
-            "'external'", "'indexed'", "'internal'", "'payable'", "'private'", 
-            "'public'", "'pure'", "'view'" ]
+    literalNames = [
+        "<INVALID>",
+        "'pragma'",
+        "';'",
+        "'^'",
+        "'~'",
+        "'>='",
+        "'>'",
+        "'<'",
+        "'<='",
+        "'='",
+        "'as'",
+        "'import'",
+        "'*'",
+        "'from'",
+        "'{'",
+        "','",
+        "'}'",
+        "'contract'",
+        "'interface'",
+        "'library'",
+        "'is'",
+        "'('",
+        "')'",
+        "'using'",
+        "'for'",
+        "'struct'",
+        "'constructor'",
+        "'modifier'",
+        "'function'",
+        "'returns'",
+        "'event'",
+        "'enum'",
+        "'['",
+        "']'",
+        "'.'",
+        "'mapping'",
+        "'=>'",
+        "'memory'",
+        "'storage'",
+        "'calldata'",
+        "'if'",
+        "'else'",
+        "'while'",
+        "'assembly'",
+        "'do'",
+        "'return'",
+        "'throw'",
+        "'emit'",
+        "'var'",
+        "'address'",
+        "'bool'",
+        "'string'",
+        "'byte'",
+        "'++'",
+        "'--'",
+        "'new'",
+        "'+'",
+        "'-'",
+        "'after'",
+        "'delete'",
+        "'!'",
+        "'**'",
+        "'/'",
+        "'%'",
+        "'<<'",
+        "'>>'",
+        "'&'",
+        "'|'",
+        "'=='",
+        "'!='",
+        "'&&'",
+        "'||'",
+        "'?'",
+        "':'",
+        "'|='",
+        "'^='",
+        "'&='",
+        "'<<='",
+        "'>>='",
+        "'+='",
+        "'-='",
+        "'*='",
+        "'/='",
+        "'%='",
+        "'let'",
+        "':='",
+        "'=:'",
+        "'switch'",
+        "'case'",
+        "'default'",
+        "'->'",
+        "'anonymous'",
+        "'break'",
+        "'constant'",
+        "'continue'",
+        "'external'",
+        "'indexed'",
+        "'internal'",
+        "'payable'",
+        "'private'",
+        "'public'",
+        "'pure'",
+        "'view'",
+    ]
 
-    symbolicNames = [ "<INVALID>",
-            "Int", "Uint", "Byte", "Fixed", "Ufixed", "VersionLiteral", 
-            "BooleanLiteral", "DecimalNumber", "HexNumber", "NumberUnit", 
-            "HexLiteral", "ReservedKeyword", "AnonymousKeyword", "BreakKeyword", 
-            "ConstantKeyword", "ContinueKeyword", "ExternalKeyword", "IndexedKeyword", 
-            "InternalKeyword", "PayableKeyword", "PrivateKeyword", "PublicKeyword", 
-            "PureKeyword", "ViewKeyword", "Identifier", "StringLiteral", 
-            "WS", "COMMENT", "LINE_COMMENT" ]
+    symbolicNames = [
+        "<INVALID>",
+        "Int",
+        "Uint",
+        "Byte",
+        "Fixed",
+        "Ufixed",
+        "VersionLiteral",
+        "BooleanLiteral",
+        "DecimalNumber",
+        "HexNumber",
+        "NumberUnit",
+        "HexLiteral",
+        "ReservedKeyword",
+        "AnonymousKeyword",
+        "BreakKeyword",
+        "ConstantKeyword",
+        "ContinueKeyword",
+        "ExternalKeyword",
+        "IndexedKeyword",
+        "InternalKeyword",
+        "PayableKeyword",
+        "PrivateKeyword",
+        "PublicKeyword",
+        "PureKeyword",
+        "ViewKeyword",
+        "Identifier",
+        "StringLiteral",
+        "WS",
+        "COMMENT",
+        "LINE_COMMENT",
+    ]
 
-    ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
-                  "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", "T__13", 
-                  "T__14", "T__15", "T__16", "T__17", "T__18", "T__19", 
-                  "T__20", "T__21", "T__22", "T__23", "T__24", "T__25", 
-                  "T__26", "T__27", "T__28", "T__29", "T__30", "T__31", 
-                  "T__32", "T__33", "T__34", "T__35", "T__36", "T__37", 
-                  "T__38", "T__39", "T__40", "T__41", "T__42", "T__43", 
-                  "T__44", "T__45", "T__46", "T__47", "T__48", "T__49", 
-                  "T__50", "T__51", "T__52", "T__53", "T__54", "T__55", 
-                  "T__56", "T__57", "T__58", "T__59", "T__60", "T__61", 
-                  "T__62", "T__63", "T__64", "T__65", "T__66", "T__67", 
-                  "T__68", "T__69", "T__70", "T__71", "T__72", "T__73", 
-                  "T__74", "T__75", "T__76", "T__77", "T__78", "T__79", 
-                  "T__80", "T__81", "T__82", "T__83", "T__84", "T__85", 
-                  "T__86", "T__87", "T__88", "T__89", "Int", "Uint", "Byte", 
-                  "Fixed", "Ufixed", "VersionLiteral", "BooleanLiteral", 
-                  "DecimalNumber", "HexNumber", "NumberUnit", "HexLiteral", 
-                  "HexPair", "HexCharacter", "ReservedKeyword", "AnonymousKeyword", 
-                  "BreakKeyword", "ConstantKeyword", "ContinueKeyword", 
-                  "ExternalKeyword", "IndexedKeyword", "InternalKeyword", 
-                  "PayableKeyword", "PrivateKeyword", "PublicKeyword", "PureKeyword", 
-                  "ViewKeyword", "Identifier", "IdentifierStart", "IdentifierPart", 
-                  "StringLiteral", "DoubleQuotedStringCharacter", "SingleQuotedStringCharacter", 
-                  "WS", "COMMENT", "LINE_COMMENT" ]
+    ruleNames = [
+        "T__0",
+        "T__1",
+        "T__2",
+        "T__3",
+        "T__4",
+        "T__5",
+        "T__6",
+        "T__7",
+        "T__8",
+        "T__9",
+        "T__10",
+        "T__11",
+        "T__12",
+        "T__13",
+        "T__14",
+        "T__15",
+        "T__16",
+        "T__17",
+        "T__18",
+        "T__19",
+        "T__20",
+        "T__21",
+        "T__22",
+        "T__23",
+        "T__24",
+        "T__25",
+        "T__26",
+        "T__27",
+        "T__28",
+        "T__29",
+        "T__30",
+        "T__31",
+        "T__32",
+        "T__33",
+        "T__34",
+        "T__35",
+        "T__36",
+        "T__37",
+        "T__38",
+        "T__39",
+        "T__40",
+        "T__41",
+        "T__42",
+        "T__43",
+        "T__44",
+        "T__45",
+        "T__46",
+        "T__47",
+        "T__48",
+        "T__49",
+        "T__50",
+        "T__51",
+        "T__52",
+        "T__53",
+        "T__54",
+        "T__55",
+        "T__56",
+        "T__57",
+        "T__58",
+        "T__59",
+        "T__60",
+        "T__61",
+        "T__62",
+        "T__63",
+        "T__64",
+        "T__65",
+        "T__66",
+        "T__67",
+        "T__68",
+        "T__69",
+        "T__70",
+        "T__71",
+        "T__72",
+        "T__73",
+        "T__74",
+        "T__75",
+        "T__76",
+        "T__77",
+        "T__78",
+        "T__79",
+        "T__80",
+        "T__81",
+        "T__82",
+        "T__83",
+        "T__84",
+        "T__85",
+        "T__86",
+        "T__87",
+        "T__88",
+        "T__89",
+        "Int",
+        "Uint",
+        "Byte",
+        "Fixed",
+        "Ufixed",
+        "VersionLiteral",
+        "BooleanLiteral",
+        "DecimalNumber",
+        "HexNumber",
+        "NumberUnit",
+        "HexLiteral",
+        "HexPair",
+        "HexCharacter",
+        "ReservedKeyword",
+        "AnonymousKeyword",
+        "BreakKeyword",
+        "ConstantKeyword",
+        "ContinueKeyword",
+        "ExternalKeyword",
+        "IndexedKeyword",
+        "InternalKeyword",
+        "PayableKeyword",
+        "PrivateKeyword",
+        "PublicKeyword",
+        "PureKeyword",
+        "ViewKeyword",
+        "Identifier",
+        "IdentifierStart",
+        "IdentifierPart",
+        "StringLiteral",
+        "DoubleQuotedStringCharacter",
+        "SingleQuotedStringCharacter",
+        "WS",
+        "COMMENT",
+        "LINE_COMMENT",
+    ]
 
     grammarFileName = "Solidity.g4"
 
-    def __init__(self, input=None, output:TextIO = sys.stdout):
+    def __init__(self, input=None, output: TextIO = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.7.1")
-        self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
+        self._interp = LexerATNSimulator(
+            self, self.atn, self.decisionsToDFA, PredictionContextCache()
+        )
         self._actions = None
         self._predicates = None
-
-

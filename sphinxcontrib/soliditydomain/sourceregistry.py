@@ -13,9 +13,10 @@ from .SolidityParser import SolidityParser
 from .SolidityListener import SolidityListener
 
 from sphinx.util.logging import getLogger
+
 logger = getLogger(__name__)
 
-db = SqliteDatabase(':memory:')
+db = SqliteDatabase(":memory:")
 
 
 class SolidityObject(Model):
@@ -25,7 +26,7 @@ class SolidityObject(Model):
     name = CharField(null=True)
     paramtypes = CharField(null=True)
     contract_name = CharField(null=True)
-    docs = TextField(default='')
+    docs = TextField(default="")
 
     class Meta:
         database = db
@@ -34,7 +35,7 @@ class SolidityObject(Model):
 def remove_prefix(text, prefix):
     # https://stackoverflow.com/a/16891418
     if text.startswith(prefix):
-        return text[len(prefix):]
+        return text[len(prefix) :]
     return text
 
 
@@ -46,12 +47,13 @@ def build_source_registry(app):
 
     for root, dirs, files in os.walk(lookup_path):
         for name in files:
-            if os.path.splitext(name)[1].lower() == '.sol':
-                parse_sol(os.path.join(root, name), relsrcpath=remove_prefix(
-                    posixpath.join(
-                        posixpath.relpath(root, lookup_path),
-                        name),
-                    './'))
+            if os.path.splitext(name)[1].lower() == ".sol":
+                parse_sol(
+                    os.path.join(root, name),
+                    relsrcpath=remove_prefix(
+                        posixpath.join(posixpath.relpath(root, lookup_path), name), "./"
+                    ),
+                )
 
 
 def teardown_source_registry(app, exception):
@@ -59,32 +61,27 @@ def teardown_source_registry(app, exception):
 
 
 tag_re = re.compile(
-    r''' @ (\w+)
+    r""" @ (\w+)
         \s+
         ( [^@]+ (?: (?: (?<! \s) @ | @ \s) [^@]+)* )
-    ''',
-    re.VERBOSE | re.MULTILINE | re.DOTALL
+    """,
+    re.VERBOSE | re.MULTILINE | re.DOTALL,
 )
 
-param_re = re.compile(
-    r'(\S*)\s*(.*)',
-    re.MULTILINE | re.DOTALL
-)
+param_re = re.compile(r"(\S*)\s*(.*)", re.MULTILINE | re.DOTALL)
 
 
 def get_docs_from_comments_for_obj(ctx):
     rawlines = []
 
-    for comment in ctx.parser._input.getHiddenTokensToLeft(
-        ctx.start.tokenIndex
-    ) or ():
-        if comment.text.startswith('///'):
+    for comment in ctx.parser._input.getHiddenTokensToLeft(ctx.start.tokenIndex) or ():
+        if comment.text.startswith("///"):
             rawlines.append(comment.text[3:].strip())
-        elif comment.text.startswith('/**'):
+        elif comment.text.startswith("/**"):
             for rawline in comment.text[3:-2].splitlines():
-                rawlines.append(rawline.strip().lstrip('*').lstrip())
+                rawlines.append(rawline.strip().lstrip("*").lstrip())
 
-    rawdocs = '\n'.join(rawlines)
+    rawdocs = "\n".join(rawlines)
 
     doclines = []
     options = []
@@ -93,7 +90,7 @@ def get_docs_from_comments_for_obj(ctx):
         docs = docs.strip()
         if docs:
             for line in docs.splitlines():
-                if line.startswith(':'):
+                if line.startswith(":"):
                     options.append(line)
                 else:
                     doclines.append(line)
@@ -102,54 +99,59 @@ def get_docs_from_comments_for_obj(ctx):
         docs = docs.strip()
         lines = docs.splitlines()
         if len(lines) == 1:
-            lines[0] = remove_prefix(lines[0], '-').lstrip()
+            lines[0] = remove_prefix(lines[0], "-").lstrip()
         # HACK?: indent after first line
-        return '\n   '.join(lines)
+        return "\n   ".join(lines)
 
     for tagmatch in tag_re.finditer(rawdocs):
         tagname, tagpayload = tagmatch.groups()
 
-        if tagname == 'dev':
+        if tagname == "dev":
             demux_and_append_docs(tagpayload)
-        elif tagname == 'param':
+        elif tagname == "param":
             pmatch = param_re.fullmatch(tagpayload)
             pname, pdocs = pmatch.groups()
-            options.append(':{} {}: {}'.format(
-                tagname, pname,
-                prep_payload_docs(pdocs),
-            ))
-        elif tagname == 'return':
+            options.append(
+                ":{} {}: {}".format(
+                    tagname,
+                    pname,
+                    prep_payload_docs(pdocs),
+                )
+            )
+        elif tagname == "return":
             try:
                 returns = json.loads(tagpayload, object_pairs_hook=OrderedDict)
                 for ret_name, ret_docs in returns.items():
-                    options.append(':{} {}: {}'.format(
-                        tagname, ret_name,
-                        prep_payload_docs(ret_docs)))
+                    options.append(
+                        ":{} {}: {}".format(
+                            tagname, ret_name, prep_payload_docs(ret_docs)
+                        )
+                    )
             except json.JSONDecodeError:
-                options.append(':{}: {}'.format(
-                    tagname, prep_payload_docs(tagpayload)))
+                options.append(":{}: {}".format(tagname, prep_payload_docs(tagpayload)))
         else:
-            options.append(':{}: {}'.format(
-                tagname, prep_payload_docs(tagpayload)))
+            options.append(":{}: {}".format(tagname, prep_payload_docs(tagpayload)))
 
-    moredocs = demux_and_append_docs(tag_re.sub('', rawdocs))
+    moredocs = demux_and_append_docs(tag_re.sub("", rawdocs))
 
     if moredocs:
         doclines.append(moredocs)
 
-    return '\n\n'.join(filter(lambda x: x,
-                              map('\n'.join, (doclines, options))))
+    return "\n\n".join(filter(lambda x: x, map("\n".join, (doclines, options))))
 
 
 def format_ctx_list(ctx_list):
     if ctx_list is None:
-        return ''
+        return ""
 
-    return '(' + ', '.join(
-        ' '.join(
-            child.getText()
-            for child in pctx.getChildren())
-        for pctx in ctx_list) + ')'
+    return (
+        "("
+        + ", ".join(
+            " ".join(child.getText() for child in pctx.getChildren())
+            for pctx in ctx_list
+        )
+        + ")"
+    )
 
 
 def absorb_and_log_exceptions(ast_visitor):
@@ -160,7 +162,14 @@ def absorb_and_log_exceptions(ast_visitor):
         except (KeyboardInterrupt, SystemExit):
             raise
         except Exception as e:
-            logger.warning('parsing error occured in {}:{} during {}'.format(self.source_unit_name, self.current_contract_name, ast_visitor.__name__))
+            logger.warning(
+                "parsing error occured in {}:{} during {}".format(
+                    self.source_unit_name,
+                    self.current_contract_name,
+                    ast_visitor.__name__,
+                )
+            )
+
     return wrapper
 
 
@@ -174,20 +183,29 @@ class DefinitionsRecorder(SolidityListener):
         name = ctx.identifier().getText()
 
         if self.current_contract_name is not None:
-            logger.warning('trying to enter {} while already in {}'.format(
-                name,
-                self.current_contract_name))
+            logger.warning(
+                "trying to enter {} while already in {}".format(
+                    name, self.current_contract_name
+                )
+            )
             return
 
         objtype = ctx.start.text
 
-        signature = ' '.join((
-            name,
-            *(ctx.inheritanceSpecifier() and
-                ('is', ', '.join(
-                    node.getText()
-                    for node in ctx.inheritanceSpecifier())))
-        ))
+        signature = " ".join(
+            (
+                name,
+                *(
+                    ctx.inheritanceSpecifier()
+                    and (
+                        "is",
+                        ", ".join(
+                            node.getText() for node in ctx.inheritanceSpecifier()
+                        ),
+                    )
+                ),
+            )
+        )
 
         self.current_contract_name = name
 
@@ -206,15 +224,16 @@ class DefinitionsRecorder(SolidityListener):
 
     @absorb_and_log_exceptions
     def enterStateVariableDeclaration(self, ctx):
-        signature = ' '.join(
-            child.getText() for child in takewhile(
-                lambda child: child.getText() not in ('=', ';'),
+        signature = " ".join(
+            child.getText()
+            for child in takewhile(
+                lambda child: child.getText() not in ("=", ";"),
                 ctx.getChildren(),
             )
         )
 
         SolidityObject.create(
-            objtype='statevar',
+            objtype="statevar",
             file=self.source_unit_name,
             signature=signature,
             name=ctx.identifier().getText(),
@@ -224,13 +243,15 @@ class DefinitionsRecorder(SolidityListener):
 
     @absorb_and_log_exceptions
     def add_function_like_to_db(self, ctx):
-        name = (ctx.identifier().getText()
-                if hasattr(ctx, 'identifier')
-                and ctx.identifier() is not None else None)
+        name = (
+            ctx.identifier().getText()
+            if hasattr(ctx, "identifier") and ctx.identifier() is not None
+            else None
+        )
 
-        if hasattr(ctx, 'parameterList') and ctx.parameterList() is not None:
+        if hasattr(ctx, "parameterList") and ctx.parameterList() is not None:
             params = ctx.parameterList().parameter()
-        elif hasattr(ctx, 'eventParameterList'):
+        elif hasattr(ctx, "eventParameterList"):
             params = ctx.eventParameterList().eventParameter()
         else:
             params = None
@@ -238,42 +259,51 @@ class DefinitionsRecorder(SolidityListener):
         if params is None:
             paramtypes = None
         else:
-            paramtypes = ','.join(param.typeName().getText()
-                                  for param in params)
+            paramtypes = ",".join(param.typeName().getText() for param in params)
 
         params_str = format_ctx_list(params)
 
-        signature = ' '.join((
-            ('' if name is None else name) + params_str,
-            *(
-                ('{}{}'.format(
-                    child.identifier().getText(),
-                    format_ctx_list(child.expressionList().expression()),
-                ) if isinstance(
-                    child,
-                    SolidityParser.ModifierInvocationContext,
-                ) and child.expressionList() is not None else
-                    child.getText()
-                    for child in ctx.modifierList().getChildren())
-                if hasattr(ctx, 'modifierList') else
-                ()
-            ),
-            *(
-                (ctx.AnonymousKeyword().getText(),)
-                if hasattr(ctx, 'AnonymousKeyword')
-                and ctx.AnonymousKeyword() is not None else
-                ()
-            ),
-            *(
-                ('{} {}'.format(
-                    ctx.returnParameters().start.text, format_ctx_list(
-                        ctx.returnParameters().parameterList().parameter())),)
-                if hasattr(ctx, 'returnParameters')
-                and ctx.returnParameters() is not None
-                else
-                ()
-            ),
-        ))
+        signature = " ".join(
+            (
+                ("" if name is None else name) + params_str,
+                *(
+                    (
+                        "{}{}".format(
+                            child.identifier().getText(),
+                            format_ctx_list(child.expressionList().expression()),
+                        )
+                        if isinstance(
+                            child,
+                            SolidityParser.ModifierInvocationContext,
+                        )
+                        and child.expressionList() is not None
+                        else child.getText()
+                        for child in ctx.modifierList().getChildren()
+                    )
+                    if hasattr(ctx, "modifierList")
+                    else ()
+                ),
+                *(
+                    (ctx.AnonymousKeyword().getText(),)
+                    if hasattr(ctx, "AnonymousKeyword")
+                    and ctx.AnonymousKeyword() is not None
+                    else ()
+                ),
+                *(
+                    (
+                        "{} {}".format(
+                            ctx.returnParameters().start.text,
+                            format_ctx_list(
+                                ctx.returnParameters().parameterList().parameter()
+                            ),
+                        ),
+                    )
+                    if hasattr(ctx, "returnParameters")
+                    and ctx.returnParameters() is not None
+                    else ()
+                ),
+            )
+        )
 
         SolidityObject.create(
             objtype=ctx.start.text,
@@ -294,16 +324,15 @@ class DefinitionsRecorder(SolidityListener):
     def enterStructDefinition(self, ctx):
         docs = get_docs_from_comments_for_obj(ctx)
 
-        signature = ' '.join((
-            ctx.start.text,
-            ctx.identifier().getText(),
-        ))
+        signature = " ".join(
+            (
+                ctx.start.text,
+                ctx.identifier().getText(),
+            )
+        )
 
         members = tuple(
-            ' '.join(
-                child.getText()
-                for child in vdctx.getChildren()
-            )
+            " ".join(child.getText() for child in vdctx.getChildren())
             for vdctx in ctx.variableDeclaration()
         )
 
@@ -311,19 +340,18 @@ class DefinitionsRecorder(SolidityListener):
     def enterEnumDefinition(self, ctx):
         docs = get_docs_from_comments_for_obj(ctx)
 
-        signature = ' '.join((
-            ctx.start.text,
-            ctx.identifier().getText(),
-        ))
-
-        members = tuple(
-            enum_val.getText()
-            for enum_val in ctx.enumValue()
+        signature = " ".join(
+            (
+                ctx.start.text,
+                ctx.identifier().getText(),
+            )
         )
+
+        members = tuple(enum_val.getText() for enum_val in ctx.enumValue())
 
 
 def parse_sol(srcpath, relsrcpath):
-    src = FileStream(srcpath, encoding='utf8')
+    src = FileStream(srcpath, encoding="utf8")
     lexer = SolidityLexer(src)
     stream = CommonTokenStream(lexer)
     parser = SolidityParser(stream)
