@@ -1,0 +1,15 @@
+[tool]
+[tool.poetry]
+name = "sphinxcontrib-soliditydomain"
+version = "0.5.2"
+description = "Solidity domain for Sphinx"
+keywords = ["sphinx", "solidity", "domain", "contrib", "documentation", "generator", "plugin"]
+classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Developers", "Topic :: Software Development :: Build Tools", "License :: OSI Approved :: MIT License", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.4", "Programming Language :: Python :: 3.5", "Programming Language :: Python :: 3.6"]
+homepage = "https://github.com/cag/sphinxcontrib-soliditydomain"
+authors = ["Alan Lu <alan@gnosis.pm>"]
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "*"
+antlr4-python3-runtime = "*"
+peewee = "*"
