@@ -1,17 +1,5 @@
-// Copyright 2016-2017 Federico Bond <federicobond@gmail.com>
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2016-2019 Federico Bond <federicobond@gmail.com>
+// Licensed under the MIT license. See LICENSE file in the project root for details.
 
 grammar Solidity;
 
@@ -44,13 +32,23 @@ importDirective
   | 'import' ('*' | identifier) ('as' identifier)? 'from' StringLiteral ';'
   | 'import' '{' importDeclaration ( ',' importDeclaration )* '}' 'from' StringLiteral ';' ;
 
+NatSpecSingleLine
+  : ('///' .*? [\r\n]) + ;
+
+NatSpecMultiLine
+  : '/**' .*? '*/' ;
+
+natSpec
+  : NatSpecSingleLine
+  | NatSpecMultiLine ;
+
 contractDefinition
-  : ( 'contract' | 'interface' | 'library' ) identifier
+  : natSpec? ( 'contract' | 'interface' | 'library' ) identifier
     ( 'is' inheritanceSpecifier (',' inheritanceSpecifier )* )?
     '{' contractPart* '}' ;
 
 inheritanceSpecifier
-  : userDefinedTypeName ( '(' expression ( ',' expression )* ')' )? ;
+  : userDefinedTypeName ( '(' expressionList? ')' )? ;
 
 contractPart
   : stateVariableDeclaration
@@ -84,7 +82,7 @@ modifierInvocation
   : identifier ( '(' expressionList? ')' )? ;
 
 functionDefinition
-  : 'function' identifier? parameterList modifierList returnParameters? ( ';' | block ) ;
+  : natSpec? 'function' identifier? parameterList modifierList returnParameters? ( ';' | block ) ;
 
 returnParameters
   : 'returns' parameterList ;
@@ -94,7 +92,7 @@ modifierList
     | PublicKeyword | InternalKeyword | PrivateKeyword )* ;
 
 eventDefinition
-  : 'event' identifier eventParameterList AnonymousKeyword? ';' ;
+  : natSpec? 'event' identifier eventParameterList AnonymousKeyword? ';' ;
 
 enumValue
   : identifier ;
@@ -128,7 +126,8 @@ typeName
   | userDefinedTypeName
   | mapping
   | typeName '[' expression? ']'
-  | functionTypeName ;
+  | functionTypeName
+  | 'address' 'payable' ;
 
 userDefinedTypeName
   : identifier ( '.' identifier )* ;
@@ -177,7 +176,7 @@ simpleStatement
   : ( variableDeclarationStatement | expressionStatement ) ;
 
 forStatement
-  : 'for' '(' ( simpleStatement | ';' ) expression? ';' expression? ')' statement ;
+  : 'for' '(' ( simpleStatement | ';' ) ( expressionStatement | ';' ) expression? ')' statement ;
 
 inlineAssemblyStatement
   : 'assembly' StringLiteral? assemblyBlock ;
@@ -259,9 +258,10 @@ primaryExpression
   | numberLiteral
   | HexLiteral
   | StringLiteral
-  | identifier
+  | identifier ('[' ']')?
+  | TypeKeyword
   | tupleExpression
-  | elementaryTypeNameExpression ;
+  | typeNameExpression ('[' ']')? ;
 
 expressionList
   : expression (',' expression)* ;
@@ -356,14 +356,15 @@ tupleExpression
   : '(' ( expression? ( ',' expression? )* ) ')'
   | '[' ( expression ( ',' expression )* )? ']' ;
 
-elementaryTypeNameExpression
-  : elementaryTypeName ;
+typeNameExpression
+  : elementaryTypeName
+  | userDefinedTypeName ;
 
 numberLiteral
   : (DecimalNumber | HexNumber) NumberUnit? ;
 
 identifier
-  : ('from' | Identifier) ;
+  : ('from' | 'calldata' | Identifier) ;
 
 VersionLiteral
   : [0-9]+ '.' [0-9]+ '.' [0-9]+ ;
@@ -372,10 +373,18 @@ BooleanLiteral
   : 'true' | 'false' ;
 
 DecimalNumber
-  : ([0-9]+ | ([0-9]* '.' [0-9]+) ) ( [eE] [0-9]+ )? ;
+  : ( DecimalDigits | (DecimalDigits? '.' DecimalDigits) ) ( [eE] DecimalDigits )? ;
+
+fragment
+DecimalDigits
+  : [0-9] ( '_'? [0-9] )* ;
 
 HexNumber
-  : '0x' HexCharacter+ ;
+  : '0' [xX] HexDigits ;
+
+fragment
+HexDigits
+  : HexCharacter ( '_'? HexCharacter )* ;
 
 NumberUnit
   : 'wei' | 'szabo' | 'finney' | 'ether'
@@ -408,7 +417,6 @@ ReservedKeyword
   | 'static'
   | 'switch'
   | 'try'
-  | 'type'
   | 'typeof' ;
 
 AnonymousKeyword : 'anonymous' ;
@@ -422,6 +430,7 @@ PayableKeyword : 'payable' ;
 PrivateKeyword : 'private' ;
 PublicKeyword : 'public' ;
 PureKeyword : 'pure' ;
+TypeKeyword : 'type' ;
 ViewKeyword : 'view' ;
 
 Identifier
